@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/filter_all"
+        android:title="@string/show_all_menu_item"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/filter_userapps_only"
+        android:title="@string/user_apps_only_menu_item"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/filter_system_only"
+        android:title="@string/system_apps_only_menu_item"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/filter_active"
+        android:title="@string/active_apps_menu_item"
+        app:showAsAction="never" />
+</menu>

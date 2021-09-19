@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/app_detail_nav"
+    app:startDestination="@id/appDetailFragment2">
+
+    <fragment
+        android:id="@+id/appDetailFragment2"
+        android:name="com.dypcet.g1.batterysaversystem.appdetail.AppDetailFragment"
+        android:label="AppDetailFragment">
+        <argument
+            android:name="package_name"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_appDetailFragment2_to_mainActivity"
+            app:destination="@id/mainActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.dypcet.g1.batterysaversystem.MainActivity"
+        android:label="MainActivity" />
+</navigation>

@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">Battery Saver System</string>
+    <string name="application_icon_content_description">Application Icon</string>
+    <string name="notification_channel_id">charge_state_channel</string>
+    <string name="notification_channel_name">Charging State</string>
+    <string name="charge_complete">Hey! Charging Complete!</string>
+    <string name="alarm">Alarm</string>
+    <string name="start_alarm">Start</string>
+    <string name="stop_alarm">Stop</string>
+    <string name="alarm_battery_percentage_string">Set Alarm for %1$d%% battery</string>
+    <string name="alert_battery_percentage_string">Set Alert for %1$d%% battery</string>
+
+    <string name="alarm_set_done">Alarm set for %1$d%% battery</string>
+    <string name="alert_set_done">Alert set for %1$d%% battery</string>
+    <string name="enter_battery_percentage">Move Slider to change</string>
+
+    <string name="preference_file_key">com.dypcet.g1.batterysaversystem.PREFERENCE_FILE_KEY</string>
+    <string name="alarm_percentage_key">Alarm_Percentage</string>
+    <string name="alarm_state_key">Alarm_State</string>
+    <string name="alert_percentage_key">Alert_Percentage</string>
+    <string name="alert_state_key">Alert_State</string>
+
+    <string name="alert_icon_content_description">Alert Icon</string>
+    <string name="charging_off_alert_text_view">
+        Hmmm…\n
+        May be your device is\n
+        currently not charging.\n
+        Connect your device\n
+        to charger and try again.
+    </string>
+    <string name="charging_on_alert_text_view">
+        Sorry…\n
+        You cannot set Alert\n
+        when charging is on.\n
+        Disconnect your charger\n
+        and try again.
+    </string>
+    <string name="refresh_button_text">Refresh</string>
+    <string name="show_all_menu_item">Show All</string>
+    <string name="user_apps_only_menu_item">User Apps</string>
+    <string name="system_apps_only_menu_item">System Apps</string>
+    <string name="active_apps_menu_item">Active Apps</string>
+    <string name="open_button_text">Open</string>
+    <string name="close_button_text">Close</string>
+    <string name="alert_service_text_view">Alert</string>
+
+    <string name="less_than_minimum_battery">Percentage set less than minimum !</string>
+    <string name="not_charging">Device is not in charging mode.</string>
+
+    <string name="greater_than_maximum_battery">Percentage set greater than maximum</string>
+    <string name="is_charging">Device is in charging mode.</string>
+</resources>

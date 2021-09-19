@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.dypcet.g1.batterysaversystem.appdetail.AppDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/app_icon_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/application_icon_content_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_launcher_background"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/title_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{viewModel.app.name}"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            app:layout_constraintBottom_toTopOf="@+id/version_text_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/app_icon_view"
+            app:layout_constraintTop_toTopOf="@+id/app_icon_view"
+            tools:text="Youtube" />
+
+        <TextView
+            android:id="@+id/version_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.app.version}"
+            app:layout_constraintBottom_toTopOf="@+id/package_name_text_view"
+            app:layout_constraintEnd_toEndOf="@+id/title_text_view"
+            app:layout_constraintStart_toStartOf="@+id/title_text_view"
+            app:layout_constraintTop_toBottomOf="@+id/title_text_view"
+            tools:text="1.2.3.4" />
+
+        <TextView
+            android:id="@+id/package_name_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.app.packageName}"
+            app:layout_constraintBottom_toBottomOf="@+id/app_icon_view"
+            app:layout_constraintEnd_toEndOf="@+id/title_text_view"
+            app:layout_constraintStart_toStartOf="@+id/version_text_view"
+            app:layout_constraintTop_toBottomOf="@+id/version_text_view"
+            tools:text="com.youtube.youtube" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/open_app_button">
+
+            <ExpandableListView
+                android:id="@+id/expandable_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@android:color/darker_gray"
+                android:dividerHeight="0.5dp"
+                android:indicatorRight="?android:attr/expandableListPreferredItemIndicatorRight" />
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/open_app_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:onClick="@{()-> viewModel.openApp()}"
+            android:text="@string/open_button_text"
+            app:layout_constraintEnd_toStartOf="@+id/close_app_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/app_icon_view" />
+
+        <Button
+            android:id="@+id/close_app_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:onClick="@{()-> viewModel.closeApp()}"
+            android:text="@string/close_button_text"
+            app:layout_constraintBottom_toBottomOf="@+id/open_app_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/open_app_button"
+            app:layout_constraintTop_toTopOf="@+id/open_app_button" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

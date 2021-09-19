@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewmodel"
+            type="com.dypcet.g1.batterysaversystem.alarmsettings.AlarmSettingsViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{viewmodel.isChargingOn ? View.GONE : View.VISIBLE}"
+            tools:visibility="gone">
+
+            <TextView
+                android:id="@+id/not_charging_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:text="@string/charging_off_alert_text_view"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                app:layout_constraintBottom_toTopOf="@+id/refresh_button"
+                app:layout_constraintEnd_toEndOf="@+id/refresh_button"
+                app:layout_constraintStart_toStartOf="@+id/refresh_button" />
+
+            <Button
+                android:id="@+id/refresh_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{()->viewmodel.onRefresh()}"
+                android:text="@string/refresh_button_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/alert_image_view"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginBottom="24dp"
+                android:contentDescription="@string/alert_icon_content_description"
+                app:layout_constraintBottom_toTopOf="@+id/not_charging_text_view"
+                app:layout_constraintEnd_toEndOf="@+id/not_charging_text_view"
+                app:layout_constraintStart_toStartOf="@+id/not_charging_text_view"
+                app:srcCompat="@drawable/ic_baseline_warning_24" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{viewmodel.isChargingOn ? View.VISIBLE : View.GONE}">
+
+            <TextView
+                android:id="@+id/alarm_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/alarm"
+                android:textAppearance="@android:style/TextAppearance.Material.Title"
+                android:textSize="36sp"
+                app:layout_constraintBottom_toTopOf="@+id/battery_percentage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/battery_percentage"
+                setAlarmBatteryPercentageText="@{viewmodel.percentage}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                app:layout_constraintBottom_toTopOf="@+id/alarm_percentage_slider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/alarm_title"
+                tools:text="Set Alarm for 60% battery" />
+
+            <TextView
+                android:id="@+id/alarm_set_text_view"
+                alarmSetDoneText="@{viewmodel.percentage}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/teal_700"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Alarm set for 60% battery" />
+
+            <TextView
+                android:id="@+id/move_slider_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/enter_battery_percentage"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                app:layout_constraintBottom_toTopOf="@+id/alarm_percentage_slider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/alarm_percentage_slider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stepSize="1.0"
+                android:value="@{viewmodel.percentage}"
+                android:valueFrom="0.0"
+                android:valueTo="100.0"
+                app:layout_constraintBottom_toTopOf="@+id/start_alarm_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/battery_percentage" />
+
+            <Button
+                android:id="@+id/start_alarm_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="@{viewmodel.startButtonVisible}"
+                android:onClick="@{()->viewmodel.onSetAlarm()}"
+                android:text="@string/start_alarm"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/stop_alarm_button"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/alarm_percentage_slider" />
+
+            <Button
+                android:id="@+id/stop_alarm_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="@{viewmodel.stopButtonVisible}"
+                android:onClick="@{()->viewmodel.onStopAlarm()}"
+                android:text="@string/stop_alarm"
+                app:layout_constraintBottom_toBottomOf="@+id/start_alarm_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/start_alarm_button"
+                app:layout_constraintTop_toTopOf="@+id/start_alarm_button" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
+</layout>
